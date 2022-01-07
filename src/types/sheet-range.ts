@@ -3,4 +3,4 @@ export type TSheetRange = {
   column: number;
   numRows: number;
   numColumns: number;
-}
+};

@@ -1,6 +1,6 @@
-import { TConstants } from '../types/constants';
-import { createConstants } from '../utils/create-const';
-import { Informer } from '../classes/informer';
+import { TConstants } from './types/constants';
+import { createConstants } from './utils/create-const';
+import { Informer } from './classes/informer';
 
 // // Устанавливает значения для строки нового массива (info - информация об изделии, n - накопительная вероятность, left - потребность, right - система ФАКТ)
 // function setRowData(info, n, left, right) {
@@ -127,7 +127,11 @@ import { Informer } from '../classes/informer';
 //   return sheet.getRange(a, b, c, d).setValues(data);
 // }
 
-function main(): void {
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare let global: any;
+
+global.main = (): void => {
 
   const ss = SpreadsheetApp.getActiveSpreadsheet();
 
@@ -145,6 +149,10 @@ function main(): void {
 
   // Начало работы скрипта (дата)
   info.display('C10', new Date);
+
+  Logger.log('complete');
+  Logger.log(constants.days);
+  Logger.log(constants.today);
 
 //   // =============== Формируем общий массив потребности из CRM и общий массв с изделиями в производстве из систему ФАКТ =============================
 //
@@ -521,4 +529,4 @@ function main(): void {
 //   // Начало работы скрипта
 //   info.display('D10', new Date);
 
-}
+};

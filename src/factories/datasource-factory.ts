@@ -1,7 +1,10 @@
 import { DatasourceName } from '../enums/datasource-name';
 import { DatasourceSheetName } from '../enums/datasource-sheet-name';
 
-export const dataSourceFactory = <T>(ss: GoogleAppsScript.Spreadsheet.Spreadsheet, name: DatasourceName): T | null => {
+export const dataSourceFactory = <T>(
+  ss: GoogleAppsScript.Spreadsheet.Spreadsheet,
+  name: DatasourceName
+): T | null => {
   let sheet: GoogleAppsScript.Spreadsheet.Sheet | null;
   let lastRow: number;
 
@@ -60,7 +63,7 @@ export const dataSourceFactory = <T>(ss: GoogleAppsScript.Spreadsheet.Spreadshee
       }
 
       return {
-        sheet: DatasourceSheetName.DASH_board
+        sheet: DatasourceSheetName.DASH_board,
       } as unknown as T;
 
     case DatasourceName.NEED:

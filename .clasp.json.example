@@ -1,6 +1,6 @@
 {
   "scriptId": "",
-  "rootDir": "build/",
+  "rootDir": "dist/",
   "projectId": "project-id-xxxxxxxxxxxxxxxxxxx",
   "fileExtension": "ts",
   "filePushOrder": ["file1.ts", "file2.ts"]

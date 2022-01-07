@@ -9,5 +9,5 @@ export class Informer {
 
   log(data: any): void {
     this._sheet.getRange('B' + (this._sheet.getLastRow() + 1)).setValue(data);
-  };
+  }
 }

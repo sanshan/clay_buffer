@@ -12,4 +12,4 @@ export type TConstants = {
   need: any[];
   fact: any[];
   dashBoard: GoogleAppsScript.Spreadsheet.Sheet;
-}
+};

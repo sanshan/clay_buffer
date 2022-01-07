@@ -6,9 +6,11 @@ import { IDataSourceColumn } from '../interfaces/datasource-column';
 import { IDataSourceRange } from '../interfaces/datasource-range';
 import { IDataSource } from '../interfaces/datasource';
 
-export const createConstants = (ss: GoogleAppsScript.Spreadsheet.Spreadsheet): TConstants | null => {
+export const createConstants = (
+  ss: GoogleAppsScript.Spreadsheet.Spreadsheet
+): TConstants | null => {
   const productsNames = dataSourceFactory<IDataSourceRange>(ss, DatasourceName.productsNames);
-  const date = dataSourceFactory<IDataSourceColumn>(ss, DatasourceName.days);
+  const date = dataSourceFactory<IDataSourceColumn>(ss, DatasourceName.date);
   const days = dataSourceFactory<IDataSourceColumn>(ss, DatasourceName.days);
   const dashBoard = dataSourceFactory<IDataSource>(ss, DatasourceName.dashBoard);
   const NEED = dataSourceFactory<IDataSourceRange>(ss, DatasourceName.NEED);
@@ -59,7 +61,7 @@ export const createConstants = (ss: GoogleAppsScript.Spreadsheet.Spreadsheet): T
       days: daysSheet.getRange(days.cell).getValue(),
       need: arrayFromSheetRange(NEEDSheet, NEED.cell),
       fact: arrayFromSheetRange(FACTSheet, FACT.cell),
-      dashBoard: dashBoardSheet
+      dashBoard: dashBoardSheet,
     };
   }
 
