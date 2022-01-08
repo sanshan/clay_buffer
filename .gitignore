@@ -1,3 +1,9 @@
+#Google clasp
+.clasp.json
+
+#Jetbrains
+.idea
+
 # Logs
 logs
 *.log
