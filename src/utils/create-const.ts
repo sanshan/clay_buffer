@@ -1,70 +1,43 @@
 import { TConstants } from '../types/constants';
+import { ProductDataSource } from '../classes/datasource-product';
 import { arrayFromSheetRange } from './array-from-sheet-range';
-import { dataSourceFactory } from '../factories/datasource-factory';
-import { DatasourceName } from '../enums/datasource-name';
-import { IDataSourceColumn } from '../interfaces/datasource-column';
-import { IDataSourceRange } from '../interfaces/datasource-range';
-import { IDataSource } from '../interfaces/datasource';
+import { Product } from '../models/product';
+import { NeedDataSource } from '../classes/datasource-need';
+import { Need } from '../models/need';
+import { Fact } from '../models/fact';
+import { FactDataSource } from '../classes/datasource-fact';
 
 export const createConstants = (
   ss: GoogleAppsScript.Spreadsheet.Spreadsheet
 ): TConstants | null => {
-  const productsNames = dataSourceFactory<IDataSourceRange>(ss, DatasourceName.productsNames);
-  const date = dataSourceFactory<IDataSourceColumn>(ss, DatasourceName.date);
-  const days = dataSourceFactory<IDataSourceColumn>(ss, DatasourceName.days);
-  const dashBoard = dataSourceFactory<IDataSource>(ss, DatasourceName.dashBoard);
-  const NEED = dataSourceFactory<IDataSourceRange>(ss, DatasourceName.NEED);
-  const FACT = dataSourceFactory<IDataSourceRange>(ss, DatasourceName.FACT);
+  const { datasource: productDS, errors: productErrors } = new ProductDataSource(ss).init();
+  const { datasource: needDS, errors: needErrors } = new NeedDataSource(ss).init();
+  const { datasource: factDS, errors: factErrors } = new FactDataSource(ss).init();
 
-  if (productsNames && date && days && dashBoard && NEED && FACT) {
-    const productsNamesSheet = ss.getSheetByName(productsNames.sheet);
-    const dateSheet = ss.getSheetByName(date.sheet);
-    const daysSheet = ss.getSheetByName(days.sheet);
-    const dashBoardSheet = ss.getSheetByName(dashBoard.sheet);
-    const NEEDSheet = ss.getSheetByName(NEED.sheet);
-    const FACTSheet = ss.getSheetByName(FACT.sheet);
+  if (productErrors || needErrors || factErrors) {
+    [...(productErrors || []), ...(needErrors || []), ...(factErrors || [])].forEach(
+      (errorText) => {
+        Logger.log(errorText);
+      }
+    );
 
-    if (!productsNamesSheet) {
-      Logger.log(`The products names sheet is not found`);
-
-      return null;
-    }
-    if (!dateSheet) {
-      Logger.log(`the date sheet is not found`);
-
-      return null;
-    }
-    if (!daysSheet) {
-      Logger.log(`the days sheet is not found`);
-
-      return null;
-    }
-    if (!dashBoardSheet) {
-      Logger.log(`the dashboard sheet is not found`);
-
-      return null;
-    }
-    if (!NEEDSheet) {
-      Logger.log(`the need sheet is not found`);
-
-      return null;
-    }
-    if (!FACTSheet) {
-      Logger.log(`the fact sheet is not found`);
-
-      return null;
-    }
-
-    return {
-      productsNames: arrayFromSheetRange(productsNamesSheet, productsNames.cell),
-      today: dateSheet.getRange(date.cell).getValue(),
-      days: daysSheet.getRange(days.cell).getValue(),
-      need: arrayFromSheetRange(NEEDSheet, NEED.cell),
-      fact: arrayFromSheetRange(FACTSheet, FACT.cell),
-      dashBoard: dashBoardSheet,
-    };
+    return null;
   }
 
-  Logger.log(`Error when creating constants, one of sources is undefined`);
-  return null;
+  return {
+    products: arrayFromSheetRange(productDS.sheet, productDS.cell).map((row) => new Product(row)),
+    today: null,
+    days: null,
+    need: arrayFromSheetRange(needDS.sheet, needDS.cell).map((row) => new Need(row)),
+    fact: arrayFromSheetRange(factDS.sheet, factDS.cell).map((row) => new Fact(row)),
+    dashBoard: null
+  };
+
+  // ToDo(lihih)
+  //   return {
+  //     today: dateSheet.getRange(date.cell).getValue(),
+  //     days: daysSheet.getRange(days.cell).getValue(),
+  //     dashBoard: dashBoardSheet,
+  //   };
+  // }
 };

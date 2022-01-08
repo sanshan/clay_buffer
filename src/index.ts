@@ -1,6 +1,5 @@
 import { TConstants } from './types/constants';
 import { createConstants } from './utils/create-const';
-import { Informer } from './classes/informer';
 
 // // Устанавливает значения для строки нового массива (info - информация об изделии, n - накопительная вероятность, left - потребность, right - система ФАКТ)
 // function setRowData(info, n, left, right) {
@@ -145,14 +144,16 @@ global.main = (): void => {
     return;
   }
 
-  const info = new Informer(constants.dashBoard);
+  // const info = new Informer(constants.dashBoard);
 
   // Начало работы скрипта (дата)
-  info.display('C10', new Date);
+  // info.display('C10', new Date);
 
   Logger.log('complete');
-  Logger.log(constants.days);
+  Logger.log(constants.products);
   Logger.log(constants.today);
+  Logger.log(constants.need);
+  Logger.log(constants.fact);
 
 //   // =============== Формируем общий массив потребности из CRM и общий массв с изделиями в производстве из систему ФАКТ =============================
 //

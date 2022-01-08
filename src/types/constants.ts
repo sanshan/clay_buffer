@@ -6,7 +6,7 @@
  constants.arrayFACT - массив с потребностью из ФАКТ
  */
 export type TConstants = {
-  productsNames: any[];
+  products: any[];
   today: string;
   days: string;
   need: any[];

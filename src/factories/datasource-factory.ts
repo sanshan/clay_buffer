@@ -9,7 +9,7 @@ export const dataSourceFactory = <T>(
   let lastRow: number;
 
   switch (name) {
-    case DatasourceName.productsNames:
+    case DatasourceName.products:
       sheet = ss.getSheetByName(DatasourceSheetName.PRODUCTS);
       if (!sheet) {
         Logger.log(`Sheet with name "${DatasourceSheetName.PRODUCTS}" is not found`);

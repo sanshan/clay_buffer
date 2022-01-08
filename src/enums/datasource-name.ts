@@ -1,5 +1,5 @@
 export enum DatasourceName {
-  productsNames = 'productsNames',
+  products = 'products',
   date = 'date',
   days = 'days',
   NEED = 'NEED',
