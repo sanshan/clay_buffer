@@ -28,4 +28,18 @@ export const environment: IEnvironment = {
       numColumns: 14,
     },
   },
+
+  today: {
+    sheetName: DatasourceSheetName.DASH_board,
+    cell: 'C4',
+  },
+
+  days: {
+    sheetName: DatasourceSheetName.DASH_board,
+    cell: 'C7',
+  },
+
+  dashBoard: {
+    sheetName: DatasourceSheetName.DASH_board,
+  },
 };

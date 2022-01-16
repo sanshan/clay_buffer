@@ -1,7 +1,7 @@
 import { DatasourceSheetName } from '../enums/datasource-sheet-name';
 
 export interface IEnvironment {
-  // Product sheet
+  // Product source
   products: {
     sheetName: DatasourceSheetName.PRODUCTS;
     cell: {
@@ -11,7 +11,7 @@ export interface IEnvironment {
     };
   };
 
-  // Need sheet
+  // Need source
   need: {
     sheetName: DatasourceSheetName.NEED;
     cell: {
@@ -21,7 +21,7 @@ export interface IEnvironment {
     };
   };
 
-  // Fact sheet
+  // Fact source
   fact: {
     sheetName: DatasourceSheetName.FACT;
     cell: {
@@ -29,5 +29,21 @@ export interface IEnvironment {
       column: number;
       numColumns: number;
     };
+  };
+
+  // Today source
+  today: {
+    sheetName: DatasourceSheetName.DASH_board;
+    cell: string;
+  };
+
+  // Days source
+  days: {
+    sheetName: DatasourceSheetName.DASH_board;
+    cell: string;
+  };
+
+  dashBoard: {
+    sheetName: DatasourceSheetName.DASH_board;
   };
 }
