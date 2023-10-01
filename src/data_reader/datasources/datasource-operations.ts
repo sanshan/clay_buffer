@@ -1,19 +1,18 @@
-import { AbstractDataSource } from '../abstracts/abstract-datasource';
-import { IDataSourceRange } from '../interfaces/datasource-range';
+import { AbstractDataSource, DataSourceRange, SheetRange } from '../types/data-source';
 import { environment } from '../environments/environment';
 
-export class ProductDataSource extends AbstractDataSource<IDataSourceRange> {
-  sheetName = environment.products.sheetName;
+export class OperationsDataSource extends AbstractDataSource<SheetRange> {
+  sheetName = environment.operations.sheetName;
 
-  factory(ss: GoogleAppsScript.Spreadsheet.Spreadsheet): IDataSourceRange | null {
+  factory(ss: GoogleAppsScript.Spreadsheet.Spreadsheet): DataSourceRange | null {
     const sheet = ss.getSheetByName(this.sheetName);
     const lastRow = sheet.getLastRow();
-    const { row, numColumns, column } = environment.products.cell;
+    const { row, numColumns, column } = environment.operations.cell;
 
     return {
       sheetName: this.sheetName,
       sheet: this.sheet,
-      cell: {
+      cells: {
         row,
         numRows: lastRow - 1,
         column,

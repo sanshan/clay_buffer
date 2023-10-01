@@ -1,6 +1,6 @@
-import { ProductsSheetColumns } from '../enums/products-sheet-columns';
+import { ProductsSheetColumns } from '../references/products-sheet-columns';
 
-export class Product {
+export class Route {
   public nameCRM: string;
   public nameFACT: string;
   public probability: number;

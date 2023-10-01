@@ -1,4 +1,4 @@
-import { NeedsSheetColumns } from '../enums/needs-sheet-columns';
+import { NeedsSheetColumns } from '../references/needs-sheet-columns';
 
 export class Need {
   name: string;

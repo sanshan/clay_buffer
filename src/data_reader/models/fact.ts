@@ -1,4 +1,4 @@
-import { FactSheetColumns } from '../enums/fact-sheet-columns';
+import { FactSheetColumns } from '../references/fact-sheet-columns';
 
 export class Fact {
   taskName: string;
