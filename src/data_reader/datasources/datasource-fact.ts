@@ -1,16 +1,16 @@
 import { AbstractDataSource, DataSourceRange, SheetRange } from '../types/data-source';
 import { environment } from '../environments/environment';
 
-export class FactDataSource extends AbstractDataSource<SheetRange> {
-  sheetName = environment.fact.sheetName;
+export class DataSourceFact extends AbstractDataSource<SheetRange> {
+  name = 'FACT' as const;
 
   factory(ss: GoogleAppsScript.Spreadsheet.Spreadsheet): DataSourceRange | null {
-    const sheet = ss.getSheetByName(this.sheetName);
+    const sheet = ss.getSheetByName(this.name);
     const lastRow = sheet.getLastRow();
     const { row, numColumns, column } = environment.fact.cell;
 
     return {
-      sheetName: this.sheetName,
+      name: this.name,
       sheet: this.sheet,
       cells: {
         row,
@@ -19,23 +19,5 @@ export class FactDataSource extends AbstractDataSource<SheetRange> {
         numColumns,
       },
     };
-  }
-
-  validator(ss: GoogleAppsScript.Spreadsheet.Spreadsheet): string[] | null {
-    const errors: string[] = [];
-
-    this.sheet = ss.getSheetByName(this.sheetName);
-    if (!this.sheet) {
-      errors.push(`Sheet with name "${this.sheetName}" is not found`);
-      return errors;
-    }
-
-    const lastRow = this.sheet.getLastRow();
-    if (!lastRow) {
-      errors.push(`Last row for sheet with name "${this.sheetName}" is not found`);
-      return errors;
-    }
-
-    return null;
   }
 }

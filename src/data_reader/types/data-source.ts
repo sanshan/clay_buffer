@@ -1,4 +1,4 @@
-import { SheetName } from '../references/sheet-name';
+import { DatasourceName } from '../references/datasource-names';
 
 export type SheetRange = {
   row: number;
@@ -10,7 +10,7 @@ export type SheetRange = {
 export type SheetCell = string;
 
 export interface DataSource<T extends SheetCell | SheetRange> {
-  sheetName: SheetName;
+  name: keyof typeof DatasourceName;
   sheet: GoogleAppsScript.Spreadsheet.Sheet;
   cells: T;
 }
@@ -32,7 +32,7 @@ export const isDataSourceRange = (datasource: DataSources): datasource is DataSo
 export abstract class AbstractDataSource<T extends SheetCell | SheetRange>
   implements DataSource<T>
 {
-  abstract sheetName: SheetName;
+  abstract name: keyof typeof DatasourceName;
 
   sheet: GoogleAppsScript.Spreadsheet.Sheet | null;
 
@@ -42,9 +42,25 @@ export abstract class AbstractDataSource<T extends SheetCell | SheetRange>
     ss: GoogleAppsScript.Spreadsheet.Spreadsheet
   ): T extends SheetRange ? DataSourceRange : DataSourceCell | null;
 
-  abstract validator(ss: GoogleAppsScript.Spreadsheet.Spreadsheet): string[] | null;
-
   constructor(private readonly ss: GoogleAppsScript.Spreadsheet.Spreadsheet) {}
+
+  validator(ss: GoogleAppsScript.Spreadsheet.Spreadsheet): string[] | null {
+    const errors: string[] = [];
+
+    this.sheet = ss.getSheetByName(this.name);
+    if (!this.sheet) {
+      errors.push(`Sheet with name "${this.name}" is not found`);
+      return errors;
+    }
+
+    const lastRow = this.sheet.getLastRow();
+    if (!lastRow) {
+      errors.push(`Last row for sheet with name "${this.name}" is not found`);
+      return errors;
+    }
+
+    return null;
+  }
 
   init(): {
     datasource: T extends SheetRange ? DataSourceRange : DataSourceCell | null;

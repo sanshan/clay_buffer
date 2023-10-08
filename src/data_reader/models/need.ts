@@ -1,19 +1,19 @@
-import { NeedsSheetColumns } from '../references/needs-sheet-columns';
+import { dataSourceSheetColumns } from '../references/data-source-sheet-columns';
 
 export class Need {
-  name: string;
-  vendorCode: string;
-  specification: string;
-  count: number;
-  minDate: Date;
-  deadline: Date;
+  productId: string;
+  productName: string;
+  markdownId: string;
+  markdownName: string;
+  qty: string;
+  statusBuffer: string;
 
-  constructor(data: any[]) {
-    this.name = data[NeedsSheetColumns['Внутреннее название']];
-    this.vendorCode = data[NeedsSheetColumns['Артикул']];
-    this.specification = data[NeedsSheetColumns['Характеристика']];
-    this.count = data[NeedsSheetColumns['Количество']];
-    this.minDate = data[NeedsSheetColumns['Мин ДАТА']];
-    this.deadline = data[NeedsSheetColumns['Не позднее']];
+  constructor(data: string[]) {
+    this.productId = data[dataSourceSheetColumns.NEED.CRM_Product_ID];
+    this.productName = data[dataSourceSheetColumns.NEED.CRM_Product_name];
+    this.markdownId = data[dataSourceSheetColumns.NEED.Markdown_ID];
+    this.markdownName = data[dataSourceSheetColumns.NEED.Markdown_Name];
+    this.qty = data[dataSourceSheetColumns.NEED.Qty];
+    this.statusBuffer = data[dataSourceSheetColumns.NEED.STATUS_Buffer];
   }
 }

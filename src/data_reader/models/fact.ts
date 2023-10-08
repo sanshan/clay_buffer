@@ -1,35 +1,25 @@
-import { FactSheetColumns } from '../references/fact-sheet-columns';
+import { dataSourceSheetColumns } from '../references/data-source-sheet-columns';
 
 export class Fact {
-  taskName: string;
-  productName: string;
-  number: number;
-  color: string;
-  description: string;
-  oven: string;
-  reColor: 0 | 1;
-  markdown: string;
-  timeInWork: number;
-  underglaze: string;
-  underglazeId: number;
-  productionId: number;
-  operationId: number;
-  exportDate: Date;
+  factoryId: string;
+  operId: string;
+  operName: string;
+  stockId: string;
+  stockName: string;
+  semifinishedId: string;
+  semifinishedName: string;
+  markdownId: string;
+  markdownName: string;
 
-  constructor(data: any[]) {
-    this.taskName = data[FactSheetColumns['Наименование задачи (формы)']];
-    this.productName = data[FactSheetColumns['Наименование изделия']];
-    this.number = data[FactSheetColumns['Номер']];
-    this.color = data[FactSheetColumns['Цвет']];
-    this.description = data[FactSheetColumns['Описание УХО']];
-    this.oven = data[FactSheetColumns['Печь']];
-    this.reColor = data[FactSheetColumns['Проверка на перекрас']];
-    this.markdown = data[FactSheetColumns['Уценка']];
-    this.timeInWork = data[FactSheetColumns['Время в работе (в часах)']];
-    this.underglaze = data[FactSheetColumns['Подглазурка']];
-    this.underglazeId = data[FactSheetColumns['Подглазурка ID']];
-    this.productionId = data[FactSheetColumns['ID Производства']];
-    this.operationId = data[FactSheetColumns['ID Операции']];
-    this.exportDate = data[FactSheetColumns['Дата, время ВЫГРУЗКИ']];
+  constructor(data: string[]) {
+    this.factoryId = data[dataSourceSheetColumns.FACT.Factory_ID];
+    this.operId = data[dataSourceSheetColumns.FACT.Oper_ID];
+    this.operName = data[dataSourceSheetColumns.FACT.Oper_Name];
+    this.stockId = data[dataSourceSheetColumns.FACT.Stock_ID];
+    this.stockName = data[dataSourceSheetColumns.FACT.Stock_Name];
+    this.semifinishedId = data[dataSourceSheetColumns.FACT.Semifinished_ID];
+    this.semifinishedName = data[dataSourceSheetColumns.FACT.Semifinished_name];
+    this.markdownId = data[dataSourceSheetColumns.FACT.Markdown_ID];
+    this.markdownName = data[dataSourceSheetColumns.FACT.Markdown_name];
   }
 }

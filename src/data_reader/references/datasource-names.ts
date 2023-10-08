@@ -1,7 +1,6 @@
-export enum SheetName {
-  DASH_board = 'DASH_board',
-  OPERATIONS = 'Буффер',
+export enum DatasourceName {
   NEED = 'Потребность',
   FACT = 'Выгрузка из ФАКТ',
+  OPERATIONS = 'Буффер',
   ROUTS = 'Маршруты изделий',
 }

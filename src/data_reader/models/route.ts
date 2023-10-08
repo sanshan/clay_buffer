@@ -1,53 +1,29 @@
-import { ProductsSheetColumns } from '../references/products-sheet-columns';
+import { dataSourceSheetColumns } from '../references/data-source-sheet-columns';
 
 export class Route {
-  public nameCRM: string;
-  public nameFACT: string;
-  public probability: number;
-  public checkPFL: boolean;
-  public priority: number;
-  public capacity: number;
-  public costs: number;
-  public dryingTime: number;
-  public workshop1Forms: number;
-  public workshop2Forms: number;
-  public totalForms: number;
-  public underglazeId: number;
-  public underglazeImage: string;
-  public underglazeGroupId: number;
-  public underglazeGroupName: string;
-  public pathId: number;
-  public pathName: string;
-  public repainting: number;
-  public correction: number;
-  public glazurId: number;
-  public glazurColor: string;
-  public glazurGroupId: number;
-  public glazurGroupName: string;
+  productCrmId: string;
+  productCrmName: string;
+  markdownId: string;
+  markdownName: string;
+  operId: string;
+  operName: string;
+  semifinishedId: string;
+  semifinishedName: string;
+  semifinishedMarkdownId: string;
+  semifinishedMarkdownName: string;
+  csProbability: string;
 
   constructor(data: any[]) {
-    this.nameCRM = data[ProductsSheetColumns['Наименование в CRM  / 1C(Внутреннее Название)']];
-    this.nameFACT = data[ProductsSheetColumns['Наименование (Balance, Система ФАКТ)']];
-    this.probability = data[ProductsSheetColumns['ВЕРОЯТНОСТЬ ВЫХОДА']];
-    this.checkPFL = data[ProductsSheetColumns['Проверка на ПФЛ-2']];
-    this.priority = data[ProductsSheetColumns['Приоритет по технологии']];
-    this.capacity = data[ProductsSheetColumns['Объем изделий (л.) (Утильный)']];
-    this.costs = data[ProductsSheetColumns['Трудозатраты (мин.) (Сборка)']];
-    this.dryingTime = data[ProductsSheetColumns['Время сушки (ч.)']];
-    this.workshop1Forms = data[ProductsSheetColumns['ДОСТУПНО ФОРМ ЦЕХ №1']];
-    this.workshop2Forms = data[ProductsSheetColumns['ДОСТУПНО ФОРМ ЦЕХ №2']];
-    this.totalForms = data[ProductsSheetColumns['Итого Форм']];
-    this.underglazeId = data[ProductsSheetColumns['Подглазурка ID']];
-    this.underglazeImage = data[ProductsSheetColumns['Подглазурка РИСУНОК']];
-    this.underglazeGroupId = data[ProductsSheetColumns['ГРУППА Подглазурка № (ID)']];
-    this.underglazeGroupName = data[ProductsSheetColumns['ГРУППА Подглазурка Название']];
-    this.pathId = data[ProductsSheetColumns['Путь изделия ID']];
-    this.pathName = data[ProductsSheetColumns['Путь изделия НАИМЕНОВАНИЕ']];
-    this.repainting = data[ProductsSheetColumns['Перекрас %']];
-    this.correction = data[ProductsSheetColumns['Коррекция (счистка гравера) %']];
-    this.glazurId = data[ProductsSheetColumns['Глузуровка ID']];
-    this.glazurColor = data[ProductsSheetColumns['Цвет Глазури']];
-    this.glazurGroupId = data[ProductsSheetColumns['ГРУППА Глузуровка № (ID)']];
-    this.glazurGroupName = data[ProductsSheetColumns['ГРУППА Глузуровка Название']];
+    this.productCrmId = data[dataSourceSheetColumns.ROUTS.Product_CRM_ID];
+    this.productCrmName = data[dataSourceSheetColumns.ROUTS.Product_CRM_name];
+    this.markdownId = data[dataSourceSheetColumns.ROUTS.Markdown_ID];
+    this.markdownName = data[dataSourceSheetColumns.ROUTS.Markdown_Name];
+    this.operId = data[dataSourceSheetColumns.ROUTS.Oper_ID];
+    this.operName = data[dataSourceSheetColumns.ROUTS.Oper_Name];
+    this.semifinishedId = data[dataSourceSheetColumns.ROUTS.Semifinished_ID];
+    this.semifinishedName = data[dataSourceSheetColumns.ROUTS.Semifinished_name];
+    this.semifinishedMarkdownId = data[dataSourceSheetColumns.ROUTS.Semifinished_Markdown_ID];
+    this.semifinishedMarkdownName = data[dataSourceSheetColumns.ROUTS.Semifinished_Markdown_Name];
+    this.csProbability = data[dataSourceSheetColumns.ROUTS.CS_Probability];
   }
 }

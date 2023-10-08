@@ -1,19 +1,9 @@
-import { SheetName } from '../references/sheet-name';
+import { DatasourceName } from '../references/datasource-names';
 
 export interface Environments {
-  // operations sheet
-  operations: {
-    sheetName: SheetName.OPERATIONS;
-    cell: {
-      row: number;
-      column: number;
-      numColumns: number;
-    };
-  };
-
   // need sheet
   need: {
-    sheetName: SheetName.NEED;
+    sheetName: DatasourceName.NEED;
     cell: {
       row: number;
       column: number;
@@ -23,7 +13,17 @@ export interface Environments {
 
   // fact sheet
   fact: {
-    sheetName: SheetName.FACT;
+    sheetName: DatasourceName.FACT;
+    cell: {
+      row: number;
+      column: number;
+      numColumns: number;
+    };
+  };
+
+  // operations sheet
+  operations: {
+    sheetName: DatasourceName.OPERATIONS;
     cell: {
       row: number;
       column: number;
@@ -33,7 +33,7 @@ export interface Environments {
 
   // routs sheet
   routs: {
-    sheetName: SheetName.ROUTS;
+    sheetName: DatasourceName.ROUTS;
     cell: {
       row: number;
       column: number;
