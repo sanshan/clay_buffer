@@ -13,7 +13,7 @@ export class DataSourceFact extends AbstractDataSource<SheetRange> {
 
     return {
       row,
-      numRows: lastRow - 1,
+      numRows: lastRow - row + 1,
       column,
       numColumns,
     };

@@ -9,8 +9,6 @@ export class DatasourceRequirement extends AbstractDataSource<SheetRange> {
 
   cells(): SheetRange {
     const lastRow = this.sheet.getLastRow();
-    Logger.log('lastRow');
-    Logger.log(lastRow);
     const {row, numColumns, column} = environment.need.cell;
 
     return {

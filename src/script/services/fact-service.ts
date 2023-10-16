@@ -1,6 +1,6 @@
-import {Requirement} from '../../data_reader/models/requirement';
-import {Level} from '../../data_reader/models/level';
-import {Fact} from '../../data_reader/models/fact';
+import { Requirement } from '../../data_reader/models/requirement';
+import { Level } from '../../data_reader/models/level';
+import { Fact } from '../../data_reader/models/fact';
 
 const findRequirement = (
   requirement: Requirement,
@@ -9,29 +9,34 @@ const findRequirement = (
 ): {
   [key: string]: Fact[];
 } => {
-  // Count of matches
   let count = +requirement.qty;
+  Logger.log('Count of matches: ' + count);
 
-  // iterate route levels from end to start
-  return route.reverse().reduce((result, level) => {
-    // if all requirement qty matched then return result
+  Logger.log('Iterate route levels from end to start.');
+  return route.reverse().reduce((result, level, index) => {
+    Logger.log('Current level is: ' + index);
+
     if (count <= 0) {
+      Logger.log('All requirement qty matched.');
       return result;
     }
 
+    Logger.log('Search requirement by semifinishedId and markdownId ...');
     const factFromLevel = fact.filter(
       row =>
         row.operId === level.operId &&
         row.semifinishedId === level.semifinishedId &&
         row.markdownId === level.markdownId
     );
+    Logger.log('Search result: ');
+    Logger.log(factFromLevel);
 
-    // slice fact by qty
     if (factFromLevel.length > count) {
+      Logger.log('Founded: ' + factFromLevel.length + '. Slice the found fact by count: ' + count);
       factFromLevel.splice(-(factFromLevel.length - count));
     }
 
-    // decrease count
+    Logger.log('Decrease count.');
     count = count - factFromLevel.length;
 
     return {
@@ -41,4 +46,4 @@ const findRequirement = (
   }, {});
 };
 
-export {findRequirement};
+export { findRequirement };

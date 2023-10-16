@@ -28,8 +28,6 @@ export const createDataSources = (
     ss
   ).init();
 
-  Logger.log(needDS.cells());
-
   if (needErrors || factErrors || operationsErrors || routsErrors) {
     [
       ...(needErrors || []),
