@@ -1,6 +1,6 @@
 build
 .clasp.json
-.idea
+.clasprc.json
 
 # Created by https://www.gitignore.io/api/macos,node
 
@@ -90,6 +90,9 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# Webstorm
+.idea
 
 
 # End of https://www.gitignore.io/api/macos,node

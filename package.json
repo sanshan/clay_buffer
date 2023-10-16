@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/sanshan/clay_buffer#readme",
   "devDependencies": {
+    "@google/clasp": "^2.4.2",
     "@types/google-apps-script": "^0.0.54",
     "awesome-typescript-loader": "^5.2.1",
     "copy-webpack-plugin": "^6.4.1",

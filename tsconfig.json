@@ -6,7 +6,8 @@
     "alwaysStrict": true,
     "lib": ["esnext"],
     "experimentalDecorators": true,
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "skipLibCheck": true
   },
   "include": [
     "./src/**/*.ts"
