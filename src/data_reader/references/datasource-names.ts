@@ -1,5 +1,5 @@
 export enum DatasourceName {
-  NEED = 'Потребность',
+  REQUIREMENT = 'Потребность',
   FACT = 'Выгрузка из ФАКТ',
   OPERATIONS = 'Буффер',
   ROUTS = 'Маршруты изделий',

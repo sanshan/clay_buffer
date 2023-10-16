@@ -1,40 +1,58 @@
-import { arrayFromSheetRange } from './utils/array-from-sheet-range';
-import { Operation } from './models/operation';
-import { Need } from './models/need';
-import { Fact } from './models/fact';
-import { Route } from './models/route';
-import { DataSourceOperations } from './datasources/datasource-operations';
-import { DataSourceNeed } from './datasources/datasource-need';
-import { DataSourceFact } from './datasources/datasource-fact';
+import {arrayFromSheetRange} from './utils/array-from-sheet-range';
+import {Operation} from './models/operation';
+import {Requirement} from './models/requirement';
+import {Fact} from './models/fact';
+import {Level} from './models/level';
+import {DataSourceOperations} from './datasources/datasource-operations';
+import {DatasourceRequirement} from './datasources/datasource-requirement';
+import {DataSourceFact} from './datasources/datasource-fact';
+import {DataSourceRouts} from './datasources/datasource-routs';
 
-export const createDatasources = (
+export const createDataSources = (
   ss: GoogleAppsScript.Spreadsheet.Spreadsheet
 ): {
-  need: Need[];
+  requirements: Requirement[];
   fact: Fact[];
   operations: Operation[];
-  routs: Route[];
+  routs: Level[];
 } | null => {
-  const { datasource: productDS, errors: productErrors } = new DataSourceOperations(ss).init();
-  const { datasource: needDS, errors: needErrors } = new DataSourceNeed(ss).init();
-  const { datasource: factDS, errors: factErrors } = new DataSourceFact(ss).init();
+  const {datasource: needDS, errors: needErrors} = new DatasourceRequirement(
+    ss
+  ).init();
+  const {datasource: factDS, errors: factErrors} = new DataSourceFact(
+    ss
+  ).init();
+  const {datasource: operationsDS, errors: operationsErrors} =
+    new DataSourceOperations(ss).init();
+  const {datasource: routsDS, errors: routsErrors} = new DataSourceRouts(
+    ss
+  ).init();
 
-  if (productErrors || needErrors || factErrors) {
-    [...(productErrors || []), ...(needErrors || []), ...(factErrors || [])].forEach(
-      (errorText) => {
-        Logger.log(errorText);
-      }
-    );
+  if (needErrors || factErrors || operationsErrors || routsErrors) {
+    [
+      ...(needErrors || []),
+      ...(factErrors || []),
+      ...(operationsErrors || []),
+      ...(routsErrors || []),
+    ].forEach(errorText => {
+      Logger.log(errorText);
+    });
 
     return null;
   }
 
   return {
-    need: arrayFromSheetRange(needDS.sheet, needDS.cells).map((row) => new Need(row)),
-    fact: arrayFromSheetRange(factDS.sheet, factDS.cells).map((row) => new Fact(row)),
-    operations: arrayFromSheetRange(productDS.sheet, productDS.cells).map(
-      (row) => new Operation(row)
+    requirements: arrayFromSheetRange(needDS!.sheet, needDS!.cells()).map(
+      row => new Requirement(row)
     ),
-    routs: arrayFromSheetRange(factDS.sheet, factDS.cells).map((row) => new Route(row)),
+    fact: arrayFromSheetRange(factDS!.sheet, factDS!.cells()).map(
+      row => new Fact(row)
+    ),
+    operations: arrayFromSheetRange(operationsDS!.sheet, operationsDS!.cells()).map(
+      row => new Operation(row)
+    ),
+    routs: arrayFromSheetRange(routsDS!.sheet, routsDS!.cells()).map(
+      row => new Level(row)
+    ),
   };
 };

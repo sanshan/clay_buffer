@@ -1,4 +1,4 @@
-import { dataSourceSheetColumns } from '../references/data-source-sheet-columns';
+import {dataSourceSheetColumns} from '../references/data-source-sheet-columns';
 
 export class Operation {
   factoryId: string;
@@ -18,8 +18,10 @@ export class Operation {
     this.operName = data[dataSourceSheetColumns.OPERATIONS.Oper_Name];
     this.stockId = data[dataSourceSheetColumns.OPERATIONS.Stock_ID];
     this.stockName = data[dataSourceSheetColumns.OPERATIONS.Stock_Name];
-    this.semifinishedId = data[dataSourceSheetColumns.OPERATIONS.Semifinished_ID];
-    this.semifinishedName = data[dataSourceSheetColumns.OPERATIONS.Semifinished_name];
+    this.semifinishedId =
+      data[dataSourceSheetColumns.OPERATIONS.Semifinished_ID];
+    this.semifinishedName =
+      data[dataSourceSheetColumns.OPERATIONS.Semifinished_name];
     this.markdownId = data[dataSourceSheetColumns.OPERATIONS.Markdown_ID];
     this.markdownName = data[dataSourceSheetColumns.OPERATIONS.Markdown_name];
     this.qty = data[dataSourceSheetColumns.OPERATIONS.Qty];

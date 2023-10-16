@@ -1,9 +1,9 @@
-import { Environments } from './_environment.interface';
-import { DatasourceName } from '../references/datasource-names';
+import {Environments} from './_environment.interface';
+import {DatasourceName} from '../references/datasource-names';
 
 export const environment: Environments = {
   need: {
-    sheetName: DatasourceName.NEED,
+    sheetName: DatasourceName.REQUIREMENT,
     cell: {
       row: 2,
       column: 1,
@@ -37,4 +37,4 @@ export const environment: Environments = {
       numColumns: 14,
     },
   },
-} as const;
+};

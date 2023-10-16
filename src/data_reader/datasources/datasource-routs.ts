@@ -1,23 +1,21 @@
-import { AbstractDataSource, DataSourceRange, SheetRange } from '../types/data-source';
-import { environment } from '../environments/environment';
+import {
+  AbstractDataSource,
+  SheetRange,
+} from '../types/data-source';
+import {environment} from '../environments/environment';
 
 export class DataSourceRouts extends AbstractDataSource<SheetRange> {
-  name = 'OPERATIONS' as const;
+  name = 'ROUTS' as const;
 
-  factory(ss: GoogleAppsScript.Spreadsheet.Spreadsheet): DataSourceRange | null {
-    const sheet = ss.getSheetByName(this.name);
-    const lastRow = sheet.getLastRow();
-    const { row, numColumns, column } = environment.operations.cell;
+  cells(): SheetRange {
+    const lastRow = this.sheet.getLastRow();
+    const {row, numColumns, column} = environment.routs.cell;
 
     return {
-      name: this.name,
-      sheet: this.sheet,
-      cells: {
-        row,
-        numRows: lastRow - 1,
-        column,
-        numColumns,
-      },
+      row,
+      numRows: lastRow - 1,
+      column,
+      numColumns,
     };
   }
 }

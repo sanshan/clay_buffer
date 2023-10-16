@@ -1,14 +1,12 @@
-import { DataSourceSheetColumns } from '../types/data-source-sheet-columns';
-
-export const dataSourceSheetColumns: DataSourceSheetColumns = {
-  NEED: {
+export const dataSourceSheetColumns = {
+  REQUIREMENT: {
     CRM_Product_ID: 0,
     CRM_Product_name: 1,
     Markdown_ID: 2,
     Markdown_Name: 3,
     Qty: 4,
     STATUS_Buffer: 5,
-  } as const,
+  },
   FACT: {
     Factory_ID: 0,
     Oper_ID: 1,
@@ -45,4 +43,4 @@ export const dataSourceSheetColumns: DataSourceSheetColumns = {
     Semifinished_Markdown_Name: 9,
     CS_Probability: 10,
   },
-} as const;
+};

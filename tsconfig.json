@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "lib": [
-      "es2019"
-    ],
-    "target": "es2019"
-  }
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "alwaysStrict": true,
+    "lib": ["esnext"],
+    "experimentalDecorators": true,
+    "baseUrl": "./"
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
 }

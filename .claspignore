@@ -2,8 +2,6 @@
 # **/**
 
 # except the extensions…
-# !appsscript.
-json
 # !**/*.gs
 # !**/*.js
 # !**/*.ts
@@ -13,3 +11,7 @@ json
 .git/**
 .idea/**
 node_modules/**
+src/**
+.prettierrc.js
+build/**
+webpack.config.js

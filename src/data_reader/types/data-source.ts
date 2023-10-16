@@ -1,4 +1,4 @@
-import { DatasourceName } from '../references/datasource-names';
+import {DatasourceName} from '../references/datasource-names';
 
 export type SheetRange = {
   row: number;
@@ -12,46 +12,33 @@ export type SheetCell = string;
 export interface DataSource<T extends SheetCell | SheetRange> {
   name: keyof typeof DatasourceName;
   sheet: GoogleAppsScript.Spreadsheet.Sheet;
-  cells: T;
+  cells(): T;
 }
 
 export type DataSourceCell = DataSource<SheetCell>;
 
 export type DataSourceRange = DataSource<SheetRange>;
 
-export type DataSources = DataSourceCell | DataSourceRange;
-
-export const isDataSourceCell = (datasource: DataSources): datasource is DataSourceCell => {
-  return typeof datasource.cells === 'string';
-};
-
-export const isDataSourceRange = (datasource: DataSources): datasource is DataSourceRange => {
-  return typeof datasource.cells === 'object';
-};
-
 export abstract class AbstractDataSource<T extends SheetCell | SheetRange>
   implements DataSource<T>
 {
   abstract name: keyof typeof DatasourceName;
 
-  sheet: GoogleAppsScript.Spreadsheet.Sheet | null;
+  sheet!: GoogleAppsScript.Spreadsheet.Sheet;
 
-  cells: T;
-
-  abstract factory(
-    ss: GoogleAppsScript.Spreadsheet.Spreadsheet
-  ): T extends SheetRange ? DataSourceRange : DataSourceCell | null;
+  abstract cells(): T;
 
   constructor(private readonly ss: GoogleAppsScript.Spreadsheet.Spreadsheet) {}
 
   validator(ss: GoogleAppsScript.Spreadsheet.Spreadsheet): string[] | null {
     const errors: string[] = [];
 
-    this.sheet = ss.getSheetByName(this.name);
-    if (!this.sheet) {
+    const sheet = ss.getSheetByName(this.name);
+    if (!sheet) {
       errors.push(`Sheet with name "${this.name}" is not found`);
       return errors;
     }
+    this.sheet = sheet;
 
     const lastRow = this.sheet.getLastRow();
     if (!lastRow) {
@@ -62,15 +49,11 @@ export abstract class AbstractDataSource<T extends SheetCell | SheetRange>
     return null;
   }
 
-  init(): {
-    datasource: T extends SheetRange ? DataSourceRange : DataSourceCell | null;
-    errors: string[] | null;
-  } {
-    const errors = this.validator(this.ss);
-
+  init(): { datasource?: DataSource<T>; errors?: string[]; } {
+    const errors = this.validator(this.ss) || [];
     return {
-      datasource: errors ? null : this.factory(this.ss),
       errors,
-    };
+      datasource: errors ? undefined : this
+    }
   }
 }

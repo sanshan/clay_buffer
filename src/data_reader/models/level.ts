@@ -1,6 +1,6 @@
-import { dataSourceSheetColumns } from '../references/data-source-sheet-columns';
+import {dataSourceSheetColumns} from '../references/data-source-sheet-columns';
 
-export class Route {
+export class Level {
   productCrmId: string;
   productCrmName: string;
   markdownId: string;
@@ -13,7 +13,7 @@ export class Route {
   semifinishedMarkdownName: string;
   csProbability: string;
 
-  constructor(data: any[]) {
+  constructor(data: string[]) {
     this.productCrmId = data[dataSourceSheetColumns.ROUTS.Product_CRM_ID];
     this.productCrmName = data[dataSourceSheetColumns.ROUTS.Product_CRM_name];
     this.markdownId = data[dataSourceSheetColumns.ROUTS.Markdown_ID];
@@ -21,9 +21,12 @@ export class Route {
     this.operId = data[dataSourceSheetColumns.ROUTS.Oper_ID];
     this.operName = data[dataSourceSheetColumns.ROUTS.Oper_Name];
     this.semifinishedId = data[dataSourceSheetColumns.ROUTS.Semifinished_ID];
-    this.semifinishedName = data[dataSourceSheetColumns.ROUTS.Semifinished_name];
-    this.semifinishedMarkdownId = data[dataSourceSheetColumns.ROUTS.Semifinished_Markdown_ID];
-    this.semifinishedMarkdownName = data[dataSourceSheetColumns.ROUTS.Semifinished_Markdown_Name];
+    this.semifinishedName =
+      data[dataSourceSheetColumns.ROUTS.Semifinished_name];
+    this.semifinishedMarkdownId =
+      data[dataSourceSheetColumns.ROUTS.Semifinished_Markdown_ID];
+    this.semifinishedMarkdownName =
+      data[dataSourceSheetColumns.ROUTS.Semifinished_Markdown_Name];
     this.csProbability = data[dataSourceSheetColumns.ROUTS.CS_Probability];
   }
 }

@@ -1,9 +1,9 @@
-import { DatasourceName } from '../references/datasource-names';
+import {DatasourceName} from '../references/datasource-names';
 
 export interface Environments {
   // need sheet
   need: {
-    sheetName: DatasourceName.NEED;
+    sheetName: DatasourceName.REQUIREMENT;
     cell: {
       row: number;
       column: number;

@@ -1,4 +1,4 @@
-import { dataSourceSheetColumns } from '../references/data-source-sheet-columns';
+import {dataSourceSheetColumns} from '../references/data-source-sheet-columns';
 
 export class Fact {
   factoryId: string;
