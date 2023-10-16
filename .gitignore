@@ -1,6 +1,7 @@
 dist/*.js
 dist/appsscript.json
 .clasp.json
+.idea
 
 # Created by https://www.gitignore.io/api/macos,node
 
