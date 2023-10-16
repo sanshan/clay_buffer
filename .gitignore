@@ -1,5 +1,4 @@
-dist/*.js
-dist/appsscript.json
+build
 .clasp.json
 .idea
 
@@ -13,7 +12,7 @@ dist/appsscript.json
 # Icon must end with two \r
 Icon
 
-# Thumbnails
+# Thumbnailsnpm install copy-webpack-plugin --save-dev
 ._*
 
 # Files that might appear in the root of a volume
