@@ -50,7 +50,7 @@ export abstract class AbstractDataSource<T extends SheetCell | SheetRange>
   }
 
   init(): { datasource?: DataSource<T>; errors?: string[]; } {
-    const errors = this.validator(this.ss) || [];
+    const errors = this.validator(this.ss);
     return {
       errors,
       datasource: errors ? undefined : this

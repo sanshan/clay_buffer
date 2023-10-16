@@ -4,7 +4,13 @@ export const arrayFromSheetRange = (
   ss: GoogleAppsScript.Spreadsheet.Sheet,
   range: SheetRange
 ): string[][] => {
-  return ss
+  const test = ss
     .getRange(range.row, range.column, range.numRows, range.numColumns)
     .getValues();
+
+  Logger.log(range.row);
+  Logger.log(range.numRows);
+  Logger.log(test);
+
+  return test;
 };

@@ -6,7 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "push": "clasp push",
-    "build": "webpack --mode development"
+    "build": "webpack --mode development",
+    "deploy": "npm run build && npm run push"
   },
   "repository": {
     "type": "git",

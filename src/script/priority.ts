@@ -14,6 +14,8 @@ export function priority() {
 
   const {requirements, fact, routs} = dataSources;
 
+  Logger.log(requirements.length);
+
   requirements.forEach(requirement => {
     const route = findRoute(requirement, routs);
 
