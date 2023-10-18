@@ -10,7 +10,6 @@ export class Operation {
   semifinishedName: string;
   markdownId: string;
   markdownName: string;
-  qty: string;
 
   constructor(data: string[]) {
     this.factoryId = data[dataSourceSheetColumns.OPERATIONS.Factory_ID];
@@ -24,6 +23,5 @@ export class Operation {
       data[dataSourceSheetColumns.OPERATIONS.Semifinished_name];
     this.markdownId = data[dataSourceSheetColumns.OPERATIONS.Markdown_ID];
     this.markdownName = data[dataSourceSheetColumns.OPERATIONS.Markdown_name];
-    this.qty = data[dataSourceSheetColumns.OPERATIONS.Qty];
   }
 }

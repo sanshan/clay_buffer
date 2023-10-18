@@ -10,6 +10,7 @@ export class Fact {
   semifinishedName: string;
   markdownId: string;
   markdownName: string;
+  qty: string;
 
   constructor(data: string[]) {
     this.factoryId = data[dataSourceSheetColumns.FACT.Factory_ID];
@@ -21,5 +22,6 @@ export class Fact {
     this.semifinishedName = data[dataSourceSheetColumns.FACT.Semifinished_name];
     this.markdownId = data[dataSourceSheetColumns.FACT.Markdown_ID];
     this.markdownName = data[dataSourceSheetColumns.FACT.Markdown_name];
+    this.qty = data[dataSourceSheetColumns.FACT.Qty];
   }
 }

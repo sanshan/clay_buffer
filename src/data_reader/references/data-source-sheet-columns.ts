@@ -17,6 +17,7 @@ export const dataSourceSheetColumns = {
     Semifinished_name: 6,
     Markdown_ID: 7,
     Markdown_name: 8,
+    Qty: 9,
   },
   OPERATIONS: {
     Factory_ID: 0,
@@ -28,7 +29,6 @@ export const dataSourceSheetColumns = {
     Semifinished_name: 6,
     Markdown_ID: 7,
     Markdown_name: 8,
-    Qty: 9,
   },
   ROUTS: {
     Product_CRM_ID: 0,
